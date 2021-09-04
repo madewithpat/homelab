@@ -1,0 +1,14 @@
+---
+
+- name: ensure lm-sensors is installed
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - lm-sensors
+  become: true
+
+- name: copy fancontrol script
+  template:
+    src: etc/fancontrol
+    dest: /etc/fancontrol

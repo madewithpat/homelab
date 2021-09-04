@@ -1,4 +1,6 @@
 ---
-- hosts: proxmox
-  tasks:
-  - name: 
+- hosts: dell
+  vars_files:
+    - 'vars/vault.yml'
+  roles:
+  - role: mwp-fancontrol

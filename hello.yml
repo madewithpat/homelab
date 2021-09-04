@@ -1,4 +1,4 @@
 ---
-- hosts: proxmox
+- hosts: dell
   tasks:
   - debug: msg="Hello"
