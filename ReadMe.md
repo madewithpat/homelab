@@ -12,7 +12,22 @@ Currently there's a known issue with ansible configs living in a world-writable 
 export ANSIBLE_CONFIG=./ansible.cfg
 ```
 
-`hello.yml` is a simple hello world playbook.
+## Makefile
+
+The above configuration workaround is currently in the makefile, along with some other small tasks that simplify interactions.
+
+```sh
+
+# This will set up the precommit hook, which prevents commiting an unencrypted ansible vault
+make gitinit
+
+# Some shorthand tasks for encrypting and decrypting
+# `vault-password` is gitignored, and can be safely kept in the repo
+# But be sure to back this up somewhere!
+make decrypt
+make encrypt
+
+```
 
 <br/>
 
