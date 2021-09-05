@@ -10,5 +10,8 @@
 
 - name: copy fancontrol script
   template:
-    src: etc/fancontrol
-    dest: /etc/fancontrol
+    src: usr/local/bin/fancontrol.sh
+    dest: /usr/local/bin/fancontrol
+    owner: root
+    group: root
+    mode: '755'

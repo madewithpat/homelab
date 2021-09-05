@@ -1,14 +1,14 @@
 config:
 	export ANSIBLE_CONFIG=./ansible.cfg
 
-fancontrol: config
-	ansible-playbook -b main.yml --limit fancontrol
+dell: config
+	ansible-playbook -b main.yml --limit dell
 
 decrypt:
-	ansible-vault decrypt vars/vault.yaml
+	ansible-vault decrypt vars/vault.yml
 
 encrypt:
-	ansible-vault encrypt vars/vault.yaml
+	ansible-vault encrypt vars/vault.yml
 
 gitinit:
 	@./git-init.sh
