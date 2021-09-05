@@ -46,25 +46,31 @@ CPU_low="{{ ipmi.temp_low }}"
 CPU_mid="{{ ipmi.temp_mid }}"
 CPU_high="{{ ipmi.temp_high }}"
 
+echo "Average CPU ${avg_temp}"
+
 if [ $avg_temp -le $CPU_low ] ; then
 
+    echo "Setting fans for low temp"
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x01 0x00 >> /dev/null
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x02 0xff 0x06 >> /dev/null
     # sets fan speed to silent
 
 elif [ $avg_temp -le $CPU_mid ] ; then
 
+    echo "Setting fans for mid temp"
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x01 0x00 >> /dev/null
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x02 0xff 0x12 >> /dev/null
     # sets to slight noise but higher speed
 
 elif [ $avg_temp -le $CPU_high ] ; then
 
+    echo "Setting fans for high temp"
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x01 0x00 >> /dev/null
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x02 0xff 0x20 >> /dev/null
 
 else
 
+    echo "Allowing system to set fan speed"
     ipmitool -I lanplus -H $ipmi_host -U $ipmi_user -P $ipmi_pass raw 0x30 0x30 0x01 0x01 >> /dev/null
     # Resets fan control to automated
 
