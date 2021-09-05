@@ -45,5 +45,5 @@ make encrypt
 <br/>
 
 ### Fan speed
-[R710 Quieter](https://blog.lbdg.me/r710-quieter/?utm_source=pocket_mylist) - This was the basis for my fanspeed role
+[R710 Quieter](https://blog.lbdg.me/r710-quieter/) - This was the basis for my fanspeed role
 

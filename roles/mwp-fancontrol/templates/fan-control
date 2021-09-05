@@ -30,11 +30,12 @@ ipmi_pass="{{ ipmi.pass }}"
 high_temp=$(sensors|grep "high"|cut -d "+" -f2|cut -d "." -f1|sort -nr|sed -n 1p)
 
 temp_sum=0
-temps=$(sensors|grep "high"|cut -d "+" -f2|cut -d "." -f1|sort -nr)
-core_count=${#temps[@]}
+temps=(`sensors|grep "high"|cut -d "+" -f2|cut -d "." -f1`)
+core_count=0
 
 for t in ${temps[@]}; do
     let temp_sum+=$t
+    core_count=$((core_count + 1))
 done
 
 avg_temp=$(( temp_sum / core_count ))

@@ -10,7 +10,7 @@
 
 - name: copy fancontrol script
   template:
-    src: usr/local/bin/fancontrol.sh
+    src: fan-control
     dest: /usr/local/bin/fancontrol
     owner: root
     group: root
