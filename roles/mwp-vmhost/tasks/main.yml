@@ -1,0 +1,23 @@
+---
+
+- name: copy template VM setup script
+  template:
+    src: setup-template.sh
+    dest: /tmp/setup-template.sh
+    mode: '755'
+
+- name: fetch base image for VM template
+  get_url:
+    url: '{{ vm.url }}'
+    dest: '/tmp/{{ vm.name }}'
+    force: no
+  register: download_template_img
+
+- name: run template VM setup script
+  shell: ./setup-template.sh >> setup-template-log.txt
+  become: yes
+  args:
+    chdir: /tmp/
+  when: provision_template
+
+    

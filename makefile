@@ -4,6 +4,9 @@ config:
 dell: config
 	ansible-playbook -b main.yml --limit dell
 
+pve: config
+	ansible-playbook -b main.yml --limit pve
+
 decrypt:
 	ansible-vault decrypt vars/vault.yml
 

@@ -4,3 +4,4 @@
     - 'vars/vault.yml'
   roles:
   - role: mwp-fancontrol
+  - role: mwp-vmhost
