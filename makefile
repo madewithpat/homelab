@@ -1,11 +1,8 @@
-config:
-	export ANSIBLE_CONFIG=./ansible.cfg
-
-dell: config
-	ansible-playbook -b main.yml --limit dell
-
-pve: config
+pve: 
 	ansible-playbook -b main.yml --limit pve
+
+homebox:
+	ansible-playbook -b main.yml --limit homebox
 
 decrypt:
 	ansible-vault decrypt vars/vault.yml

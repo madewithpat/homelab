@@ -1,7 +1,24 @@
 ---
-- hosts: dell
+- hosts: homebox
   vars_files:
     - 'vars/vault.yml'
-  roles:
-  - role: mwp-fancontrol
-  - role: mwp-vmhost
+  tasks:
+  - name: Update apt-cache
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+    register: result
+    until: result is succeeded
+
+  - name: Install packages
+    apt:
+      name: "{{ item.name }}"
+      state: "{{ items.state | default('present') }}"
+    loop: "{{ package_list }}"
+  
+  - name: Install Docker
+    include_role: 
+      name: geerlingguy.docker
+
+
+  

@@ -1,0 +1,4 @@
+package_list:
+  - name: qemu-guest-agent
+  - name: htop
+  - name: tree
